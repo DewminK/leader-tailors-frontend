@@ -9,13 +9,17 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="Leader Tailors Logo" 
-              width={150} 
-              height={50}
-              className="object-contain"
-            />
+            <div className="relative w-[150px] h-[50px]">
+              <Image 
+                src="/logo.png" 
+                alt="Leader Tailors Logo" 
+                fill
+                sizes="200px"
+                className="object-contain"
+                priority
+                loading="eager"
+              />
+            </div>
           </Link>
 
           {/* Navigation */}
