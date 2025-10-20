@@ -9,13 +9,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <Image 
-              src="/logo.png" 
-              alt="Leader Tailors" 
-              width={120} 
-              height={40}
-              className="mb-4 brightness-0 invert"
-            />
+            <Link href="/" className="flex items-center mb-4">
+              <div className="relative w-[150px] h-[50px]">
+                <Image 
+                  src="/logo.png" 
+                  alt="Leader Tailors" 
+                  fill
+                  sizes="200px"
+                  className="object-contain brightness-0 invert"
+                  priority
+                  loading="eager"
+                />
+              </div>
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Premium tailoring services with decades of experience in crafting perfect fits.
             </p>
