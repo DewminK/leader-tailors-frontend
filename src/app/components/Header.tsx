@@ -22,29 +22,26 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+          {/* Navigation - Slightly Right Aligned */}
+          <nav className="hidden md:flex items-center space-x-12 ml-auto mr-8" style={{ fontFamily: 'var(--font-inter)' }}>
+            <Link href="/" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
               Home
             </Link>
-            <Link href="/customer/aboutus" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/services" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
+              Our Services
+            </Link>
+            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors border-b-2 border-gray-800 pb-1">
               About Us
             </Link>
-            <Link href="/services" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Services
-            </Link>
-            <Link href="/products" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Products
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
-              Contact
+            <Link href="/contact" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
+              Contact Us
             </Link>
           </nav>
 
-          {/* Cart and Profile Icons */}
-          <div className="flex items-center space-x-6">
+          {/* Cart and Profile Icons - Slightly Left Aligned */}
+          <div className="flex items-center space-x-5">
             {/* Cart Icon */}
-            <button className="relative hover:text-gray-600 transition-colors">
+            <button className="relative text-black hover:text-white hover:bg-black rounded-full p-2 transition-all">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 className="h-6 w-6" 
@@ -59,13 +56,13 @@ export default function Header() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
                 />
               </svg>
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 0
               </span>
             </button>
 
             {/* Profile Icon */}
-            <button className="hover:text-gray-600 transition-colors">
+            <button className="text-black hover:text-white hover:bg-black rounded-full p-2 transition-all">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 className="h-6 w-6" 

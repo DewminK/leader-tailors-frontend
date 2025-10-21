@@ -10,39 +10,58 @@ export default function AboutUs() {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-white py-16 border-b">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl font-bold mb-4 text-gray-900">About Us</h1>
-            <p className="text-lg max-w-3xl mx-auto text-gray-600 leading-relaxed">
-              Welcome to Leader Tailors, where tradition meets innovation. With decades of experience 
-              in bespoke tailoring, we are committed to delivering excellence in every stitch.
-            </p>
+        <section className="bg-white py-16">
+          <div className="container mx-auto px-6">
+            <h1 className="text-5xl font-bold mb-8 text-gray-900 text-center">About Us</h1>
+            
+            {/* Image with overlay text - Slightly Reduced Width, Increased Height */}
+            <div className="relative w-full max-w-7xl mx-auto mb-16">
+              <div className="bg-gray-300 h-[550px] rounded-lg flex items-center justify-center relative">
+                <span className="text-gray-500 text-lg">Image Placeholder</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-2">
+                    Meet Leader Tailors
+                  </h2>
+                  <p className="text-lg text-white drop-shadow-md">
+                    Crafting elegance for every occasion
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Our Story Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Story</h2>
-              <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
-                <p>
-                  Leader Tailors was founded in 1990 with a simple yet powerful vision: to provide 
-                  exceptional tailoring services that honor the timeless art of craftsmanship while 
-                  embracing modern design aesthetics. What began as a modest family-owned atelier 
-                  has evolved into one of the region's most trusted names in custom tailoring.
-                </p>
-                <p>
-                  Over three decades, we have had the privilege of serving thousands of discerning 
-                  clients, each receiving personalized attention and garments meticulously crafted 
-                  to reflect their unique style and personality. Our unwavering commitment to quality, 
-                  precision, and customer satisfaction has been the cornerstone of our enduring success.
-                </p>
-                <p>
-                  Today, we continue to uphold the rich traditions of fine tailoring while integrating 
-                  innovative techniques and contemporary trends. Every piece we create is a testament 
-                  to our dedication to excellence and our passion for the art of tailoring.
-                </p>
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Left - Text (Left Aligned) */}
+              <div className="pr-8">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6 text-left">Our Story</h2>
+                <div className="space-y-4 text-gray-700 leading-relaxed text-left">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+                    culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                  <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+                    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi 
+                    architecto beatae vitae dicta sunt explicabo.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Right - Image (Right Aligned) */}
+              <div className="pl-8">
+                <div className="bg-gray-300 h-96 w-full rounded-lg flex items-center justify-center">
+                  <span className="text-gray-500 text-lg">Image Placeholder</span>
+                </div>
               </div>
             </div>
           </div>
@@ -50,106 +69,63 @@ export default function AboutUs() {
 
         {/* Mission & Vision Section */}
         <section className="py-20 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              <div className="border-l-4 border-gray-800 pl-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  To provide exceptional tailoring services that exceed our customers' expectations 
-                  by delivering perfectly fitted, high-quality garments with meticulous attention 
-                  to detail and personalized service.
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Mission Box - Slightly Left Aligned */}
+              <div className="p-10 rounded-[20px] mr-4" style={{ backgroundColor: '#D9D9D9' }}>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h3>
+                <p className="text-gray-800 leading-relaxed">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
+                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                  pariatur.
                 </p>
               </div>
-              <div className="border-l-4 border-gray-800 pl-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  To be the leading name in custom tailoring, recognized for our commitment to 
-                  excellence, innovation, and customer satisfaction while preserving the art of 
-                  traditional craftsmanship for future generations.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Values Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">What We Stand For</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-white p-8 border border-gray-200 hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  We never compromise on the quality of our materials and workmanship. Every garment 
-                  is crafted using premium fabrics and meticulous attention to detail.
-                </p>
-              </div>
-              <div className="bg-white p-8 border border-gray-200 hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Craftsmanship</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Our master tailors bring decades of experience, combining traditional techniques 
-                  with modern innovations to create perfectly fitted garments.
-                </p>
-              </div>
-              <div className="bg-white p-8 border border-gray-200 hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Service</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  We believe in building lasting relationships with our clients through personalized 
-                  service, honest communication, and exceptional customer care.
+              
+              {/* Vision Box - Slightly Right Aligned */}
+              <div className="p-10 rounded-[20px] ml-4" style={{ backgroundColor: '#D9D9D9' }}>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h3>
+                <p className="text-gray-800 leading-relaxed">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
+                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                  pariatur.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
+
+        {/* Meet Our Team Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Why Choose Leader Tailors</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Meet Our Team</h2>
+            <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+              {/* Person 1 */}
+              <div className="text-center">
+                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <span className="text-gray-500">Photo</span>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Expert Craftsmen</h4>
-                <p className="text-gray-600 text-sm">
-                  Highly skilled tailors with decades of experience
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900">Person 1</h3>
               </div>
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
+              
+              {/* Person 2 */}
+              <div className="text-center">
+                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <span className="text-gray-500">Photo</span>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Premium Materials</h4>
-                <p className="text-gray-600 text-sm">
-                  Only the finest fabrics sourced for our creations
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900">Person 2</h3>
               </div>
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
+              
+              {/* Person 3 */}
+              <div className="text-center">
+                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <span className="text-gray-500">Photo</span>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Perfect Fit</h4>
-                <p className="text-gray-600 text-sm">
-                  Custom fitted to your exact measurements
-                </p>
-              </div>
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Timely Delivery</h4>
-                <p className="text-gray-600 text-sm">
-                  Prompt service without compromising quality
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900">Person 3</h3>
               </div>
             </div>
           </div>
