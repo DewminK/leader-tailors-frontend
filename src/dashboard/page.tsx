@@ -1,12 +1,13 @@
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
 import ServiceCard from './components/service-card';
 import DesignCard from './components/design-card';
 import FeedbackCard from './components/feedback-card';
 import Footer from '@/app/components/footer';
 import NavBar from '@/app/components/navbar';
-
 
 const Dashboard = () => {
     const services = [
@@ -29,7 +30,6 @@ const Dashboard = () => {
             linkColor: "text-orange-500"
         },
         {
-
             icon: (
                 <span className="text-4xl">🚗</span>
             ),
@@ -96,44 +96,109 @@ const Dashboard = () => {
             rating: 5
         }
     ];
+
+    const fadeInUp: Variants = {
+        hidden: { opacity: 0, y: 60 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
+
+    const scaleIn: Variants = {
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.5, ease: "easeOut" }
+        }
+    };
+
+    const staggerContainer: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15
+            }
+        }
+    };
+
+
     return (
         <div className='min-h-screen'>
             <NavBar />
-            {/* heroSection */}
+
+            {/* Hero Section */}
             <section className="bg-gray-200 py-16 px-6 lg:px-12">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* Left Content */}
-                        <div className="space-y-6">
-                            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                        <motion.div
+                            className="space-y-6"
+                            initial="hidden"
+                            animate="visible"
+                            variants={staggerContainer}
+                        >
+                            <motion.h1
+                                className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
+                                variants={fadeInUp}
+                            >
                                 Perfect Fit For Every Occasion
-                            </h1>
+                            </motion.h1>
 
-                            <p className="text-gray-600 text-base lg:text-lg leading-relaxed">
+                            <motion.p
+                                className="text-gray-600 text-base lg:text-lg leading-relaxed"
+                                variants={fadeInUp}
+                            >
                                 Custom tailoring, premium blazer rentals, and luxury wedding car services - all under one roof. Experience excellence in every stitch and detail.
-                            </p>
+                            </motion.p>
 
                             {/* Buttons */}
-                            <div className="flex flex-wrap gap-4 pt-4">
-                                <button className="bg-black text-white px-6 py-3 rounded font-medium hover:bg-gray-800 transform transition-transform hover:scale-105">
+                            <motion.div
+                                className="flex flex-wrap gap-4 pt-4"
+                                variants={fadeInUp}
+                            >
+                                <motion.button
+                                    className="bg-black text-white px-6 py-3 rounded font-medium hover:bg-gray-800 transform transition-transform hover:scale-105"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
                                     Book Appointment
-                                </button>
+                                </motion.button>
 
-                                <button className="bg-white text-black border-2 border-black px-6 py-3 rounded font-medium hover:bg-gray-50 transition-transform hover:scale-105">
+                                <motion.button
+                                    className="bg-white text-black border-2 border-black px-6 py-3 rounded font-medium hover:bg-gray-50 transition-transform hover:scale-105"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
                                     View Categories
-                                </button>
-                            </div>
+                                </motion.button>
+                            </motion.div>
 
                             {/* Yellow Button */}
-                            <div className="pt-2">
-                                <button className="bg-yellow-500 text-black px-6 py-3 rounded font-medium hover:bg-yellow-600 transition-transform hover:scale-105">
+                            <motion.div
+                                className="pt-2"
+                                variants={fadeInUp}
+                            >
+                                <motion.button
+                                    className="bg-yellow-500 text-black px-6 py-3 rounded font-medium hover:bg-yellow-600 transition-transform hover:scale-105"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
                                     Rent Wedding Car
-                                </button>
-                            </div>
-                        </div>
+                                </motion.button>
+                            </motion.div>
+                        </motion.div>
 
                         {/* Right Image */}
-                        <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-xl">
+                        <motion.div
+                            className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-xl"
+                            initial={{ opacity: 0, x: 100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
                             <Image
                                 src="/dashboard/heroSection.jpg"
                                 alt="Tailoring shop with suits"
@@ -141,7 +206,7 @@ const Dashboard = () => {
                                 className="object-cover"
                                 priority
                             />
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -150,25 +215,44 @@ const Dashboard = () => {
             <section className="bg-gray-50 py-16 px-6 lg:px-12">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-12">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                             Our Premium Service
                         </h2>
                         <p className="text-gray-600 text-base">
                             Excellence in every thread, elegance in every detail
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Services Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={staggerContainer}
+                    >
                         {services.map((service, index) => (
-                            <div
+                            <motion.div
                                 key={index}
+                                variants={scaleIn}
                             >
-                                <ServiceCard icon={service.icon} title={service.title} description={service.description} linkText={service.linkText} linkColor={service.linkColor} />
-                            </div>
+                                <ServiceCard
+                                    icon={service.icon}
+                                    title={service.title}
+                                    description={service.description}
+                                    linkText={service.linkText}
+                                    linkColor={service.linkColor}
+                                />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -176,27 +260,43 @@ const Dashboard = () => {
             <section className="bg-gray-200 py-16 px-6 lg:px-12">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-12">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                             Featured Designs
                         </h2>
                         <p className="text-gray-600 text-base">
                             Discover our latest collection of premium suits and blazers.
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Products Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={staggerContainer}
+                    >
                         {products.map((product) => (
-                            <DesignCard
+                            <motion.div
                                 key={product.id}
-                                image={product.image}
-                                title={product.title}
-                                description={product.description}
-                                price={product.price}
-                            />
+                                variants={scaleIn}
+                            >
+                                <DesignCard
+                                    image={product.image}
+                                    title={product.title}
+                                    description={product.description}
+                                    price={product.price}
+                                />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -204,33 +304,49 @@ const Dashboard = () => {
             <section className="bg-gray-50 py-16 px-6 lg:px-12">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-12">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeInUp}
+                    >
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
                             What Our Client Say
                         </h2>
                         <p className="text-gray-600 text-base">
-                            Trusted by thousand for life’s most importnat moments
+                            Trusted by thousand for life's most importnat moments
                         </p>
-                    </div>
+                    </motion.div>
 
-                    {/* Products Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Testimonials Grid */}
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={staggerContainer}
+                    >
                         {testimonials.map((testimonial) => (
-                            <FeedbackCard
+                            <motion.div
                                 key={testimonial.id}
-                                avatar={testimonial.avatar}
-                                name={testimonial.name}
-                                review={testimonial.review}
-                                rating={testimonial.rating}
-                            />
+                                variants={scaleIn}
+                            >
+                                <FeedbackCard
+                                    avatar={testimonial.avatar}
+                                    name={testimonial.name}
+                                    review={testimonial.review}
+                                    rating={testimonial.rating}
+                                />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
+
             <div>
                 <Footer />
             </div>
-
         </div>
     );
 };
