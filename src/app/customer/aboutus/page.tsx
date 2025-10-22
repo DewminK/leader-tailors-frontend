@@ -16,13 +16,19 @@ export default function AboutUs() {
             
             {/* Image with overlay text - Slightly Reduced Width, Increased Height */}
             <div className="relative w-full max-w-7xl mx-auto mb-16">
-              <div className="bg-gray-300 h-[550px] rounded-lg flex items-center justify-center relative">
-                <span className="text-gray-500 text-lg">Image Placeholder</span>
+              <div className="relative h-[550px] rounded-lg overflow-hidden">
+                <Image 
+                  src="/aboutus.png" 
+                  alt="About Us Hero" 
+                  fill
+                  className="object-cover rounded-lg"
+                  priority
+                />
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-2">
+                  <h2 className="text-4xl font-bold text-black drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] mb-2">
                     Meet Leader Tailors
                   </h2>
-                  <p className="text-lg text-white drop-shadow-md">
+                  <p className="text-lg text-black drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     Crafting elegance for every occasion
                   </p>
                 </div>
@@ -40,27 +46,24 @@ export default function AboutUs() {
                 <h2 className="text-4xl font-bold text-gray-900 mb-6 text-left">Our Story</h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed text-left">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                  <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-                    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi 
-                    architecto beatae vitae dicta sunt explicabo.
+                    Founded in 2009 by Mr. B. A. D. Sujeewa, Leader Tailors began as a small home-based tailoring service in Katubedda.
+                     With a passion for quality, detail, and friendly service, the business quickly built a 
+                     strong customer base. In 2022, it expanded into a full shop offering custom tailoring, blazer rentals,
+                      wedding car rentals, and event decorations. Today, Leader Tailors proudly serves over 1,000 orders per month
+                       with trusted craftsmanship and care.
                   </p>
                 </div>
               </div>
               
               {/* Right - Image (Right Aligned) */}
               <div className="pl-8">
-                <div className="bg-gray-300 h-96 w-full rounded-lg flex items-center justify-center">
-                  <span className="text-gray-500 text-lg">Image Placeholder</span>
+                <div className="relative h-96 w-full rounded-lg overflow-hidden">
+                  <Image 
+                    src="/ourstory.webp" 
+                    alt="Our Story" 
+                    fill
+                    className="object-cover rounded-lg"
+                  />
                 </div>
               </div>
             </div>
@@ -75,11 +78,8 @@ export default function AboutUs() {
               <div className="p-10 rounded-[20px] mr-4" style={{ backgroundColor: '#D9D9D9' }}>
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h3>
                 <p className="text-gray-800 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                  pariatur.
+                  To deliver exceptional craftsmanship and friendly service through personalized
+                   tailoring and event solutions that reflect our passion for detail and customer happiness.
                 </p>
               </div>
               
@@ -87,11 +87,8 @@ export default function AboutUs() {
               <div className="p-10 rounded-[20px] ml-4" style={{ backgroundColor: '#D9D9D9' }}>
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h3>
                 <p className="text-gray-800 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                  pariatur.
+                 To inspire confidence and style by becoming a leading brand in 
+                 personalized tailoring and event services across the nation.
                 </p>
               </div>
             </div>
@@ -106,26 +103,86 @@ export default function AboutUs() {
             <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
               {/* Person 1 */}
               <div className="text-center">
-                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-gray-500">Photo</span>
+                <div className="w-48 h-48 rounded-full mx-auto mb-6 relative overflow-hidden">
+                  <Image 
+                    src="/person.png" 
+                    alt="Person 1" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Person 1</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Person 1</h3>
+                <p className="text-sm text-gray-600 mb-3">Master Tailor</p>
+                <div className="flex flex-col items-center space-y-2 text-sm text-gray-700">
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+94 123 456 789</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>person1@leadertailors.com</span>
+                  </div>
+                </div>
               </div>
               
               {/* Person 2 */}
               <div className="text-center">
-                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-gray-500">Photo</span>
+                <div className="w-48 h-48 rounded-full mx-auto mb-6 relative overflow-hidden">
+                  <Image 
+                    src="/person.png" 
+                    alt="Person 2" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Person 2</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Person 2</h3>
+                <p className="text-sm text-gray-600 mb-3">Design Consultant</p>
+                <div className="flex flex-col items-center space-y-2 text-sm text-gray-700">
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+94 123 456 790</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>person2@leadertailors.com</span>
+                  </div>
+                </div>
               </div>
               
               {/* Person 3 */}
               <div className="text-center">
-                <div className="w-48 h-48 bg-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-gray-500">Photo</span>
+                <div className="w-48 h-48 rounded-full mx-auto mb-6 relative overflow-hidden">
+                  <Image 
+                    src="/person.png" 
+                    alt="Person 3" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Person 3</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Person 3</h3>
+                <p className="text-sm text-gray-600 mb-3">Senior Tailor</p>
+                <div className="flex flex-col items-center space-y-2 text-sm text-gray-700">
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+94 123 456 791</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>person3@leadertailors.com</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
