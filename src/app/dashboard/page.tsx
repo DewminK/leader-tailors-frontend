@@ -6,8 +6,8 @@ import { motion, Variants } from 'framer-motion';
 import ServiceCard from './components/service-card';
 import DesignCard from './components/design-card';
 import FeedbackCard from './components/feedback-card';
-import Footer from '@/app/components/footer';
-import NavBar from '@/app/components/navbar';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Dashboard = () => {
     const services = [
@@ -128,8 +128,7 @@ const Dashboard = () => {
 
     return (
         <div className='min-h-screen'>
-            <NavBar />
-
+            <Header />
             {/* Hero Section */}
             <section className="bg-gray-200 py-16 px-6 lg:px-12">
                 <div className="max-w-7xl mx-auto">
@@ -343,10 +342,9 @@ const Dashboard = () => {
                     </motion.div>
                 </div>
             </section>
-
             <div>
-                <Footer />
             </div>
+            <Footer />
         </div>
     );
 };
