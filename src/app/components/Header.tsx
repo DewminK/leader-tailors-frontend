@@ -52,10 +52,18 @@ export default function Header() {
             >
               Our Services
             </Link>
-            <Link
-              href="/customer/aboutus"
-              className="text-gray-800 hover:text-gray-600 font-semibold transition-colors border-b-2 border-gray-800 pb-1"
-            >
+            <div className="relative group">
+              <button className="text-gray-800 hover:text-gray-600 font-semibold transition-colors flex items-center focus:outline-none">
+                Our Services
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity z-20">
+                <Link href="/services" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium rounded-t-xl transition-colors">All Services</Link>
+                <Link href="/customer/weddingCarRental" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium transition-colors">Wedding Car Rental</Link>
+                {/* Add more service links here as needed */}
+              </div>
+            </div>
+            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors border-b-2 border-gray-800 pb-1">
               About Us
             </Link>
             <Link
