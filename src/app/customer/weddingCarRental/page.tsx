@@ -129,24 +129,35 @@ const WeddingCarRental = () => {
         </div>
       </div>
 
-      {/* Decorations Section */}
+      {/* Decorations Section - Elegant & Responsive */}
       <div className="w-full mt-16 px-2 md:px-8">
-        <h2 className="text-2xl font-bold mb-6 tracking-wide font-serif text-gray-800">Decorations Option</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 tracking-wide font-serif text-gray-800 text-center">Decoration Options</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8">
           {decorations.map((dec, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center p-0 bg-transparent"
+              className="flex flex-col items-center group bg-gradient-to-br from-white via-gray-50 to-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-200 p-2 md:p-4 border border-gray-100 hover:border-gray-300"
             >
-              <div className="w-full md:w-[210px] h-[130px] flex items-center justify-center overflow-hidden rounded-xl border border-gray-200 shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-lg bg-white">
-                <Image src={dec.image} alt={dec.name} width={210} height={130} className="object-cover w-full h-full" />
+              <div className="w-full aspect-[16/10] flex items-center justify-center overflow-hidden rounded-xl relative">
+                <Image 
+                  src={dec.image} 
+                  alt={dec.name} 
+                  fill
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" 
+                  sizes="(max-width: 768px) 100vw, 210px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-xl pointer-events-none" />
               </div>
-              <div className="font-serif text-gray-800 text-lg text-center font-semibold mt-1 tracking-wide">{dec.name}</div>
+              <div className="font-serif text-gray-900 text-lg md:text-xl text-center font-semibold mt-3 tracking-wide group-hover:text-black transition-colors duration-200 drop-shadow-sm">
+                {dec.name}
+              </div>
             </div>
           ))}
         </div>
         <div className="flex justify-center mt-10">
-          <button className="px-10 py-3 bg-black text-white rounded-xl font-bold text-xl hover:bg-gray-800 shadow-lg transition-all duration-150">Customize Your Decorations</button>
+          <button className="px-8 md:px-12 py-3 md:py-4 bg-gradient-to-r from-black via-gray-900 to-black text-white rounded-2xl font-bold text-lg md:text-xl hover:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-200 tracking-wide">
+            Customize Your Decorations
+          </button>
         </div>
       </div>
 
