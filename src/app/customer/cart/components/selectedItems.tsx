@@ -22,10 +22,31 @@ interface OrderDetails {
 
 export default function SelectedItems() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedItems = localStorage.getItem("cartItems");
-    if (storedItems) setCartItems(JSON.parse(storedItems));
+    try {
+      const storedItems = localStorage.getItem("cartItems");
+      if (storedItems) {
+        const parsed = JSON.parse(storedItems);
+        // Ensure it's an array and filter out any invalid items
+        const validItems = Array.isArray(parsed) 
+          ? parsed.filter(item => 
+              item && 
+              item.id && 
+              item.name && 
+              item.price !== undefined && 
+              item.totalAmount !== undefined
+            )
+          : [];
+        setCartItems(validItems);
+      }
+    } catch (error) {
+      console.error("Error loading cart items:", error);
+      setCartItems([]);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   const handleRemove = (id: string) => {
@@ -39,7 +60,10 @@ export default function SelectedItems() {
     localStorage.removeItem("cartItems");
   };
 
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.totalAmount, 0);
+  const totalPrice = cartItems.reduce((acc, item) => {
+    const amount = item?.totalAmount || 0;
+    return acc + amount;
+  }, 0);
 
   const prepareOrderDetails = (): OrderDetails => {
     return {
@@ -53,6 +77,18 @@ export default function SelectedItems() {
     const orderDetails = prepareOrderDetails();
     localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col">
+        <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-12">
+          <div className="text-center py-16">
+            <p className="text-gray-600 text-lg">Loading your cart...</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -88,34 +124,38 @@ export default function SelectedItems() {
                     className="flex flex-col md:flex-row items-center md:items-start justify-between border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all"
                   >
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      src={item.image || '/placeholder-blazer.jpg'}
+                      alt={item.name || 'Blazer'}
                       className="w-32 h-40 object-cover rounded-lg mb-4 md:mb-0"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/placeholder-blazer.jpg';
+                      }}
                     />
 
                     <div className="flex-1 md:ml-6 w-full">
                       <h2 className="text-xl font-semibold mb-1">
-                        {item.name}
+                        {item.name || 'Unnamed Blazer'}
                       </h2>
                       <p className="text-sm text-gray-600 mb-2">
-                        Size: {item.size}
+                        Size: {item.size || 'N/A'}
                       </p>
                       <p className="text-sm text-gray-600 mb-2">
                         From{" "}
-                        <span className="font-medium">{item.startDate}</span> to{" "}
-                        <span className="font-medium">{item.endDate}</span>
+                        <span className="font-medium">{item.startDate || 'N/A'}</span> to{" "}
+                        <span className="font-medium">{item.endDate || 'N/A'}</span>
                       </p>
                       <p className="text-sm text-gray-800 font-medium">
-                        Daily Rate: LKR {item.price.toLocaleString()}
+                        Daily Rate: LKR {(item.price || 0).toLocaleString()}
                       </p>
                       <p className="text-lg font-bold text-black mt-2">
-                        Total: LKR {item.totalAmount.toLocaleString()}
+                        Total: LKR {(item.totalAmount || 0).toLocaleString()}
                       </p>
                     </div>
 
                     <button
                       type="button"
-                      aria-label="none"
+                      aria-label="Remove item"
                       onClick={() => handleRemove(item.id)}
                       className="mt-4 md:mt-0 bg-gray-100 hover:bg-gray-200 text-gray-700 p-3 rounded-full"
                     >
@@ -138,16 +178,16 @@ export default function SelectedItems() {
                         className="flex justify-between items-start"
                       >
                         <div className="flex-1">
-                          <p className="font-medium text-sm">{item.name}</p>
+                          <p className="font-medium text-sm">{item.name || 'Unnamed Blazer'}</p>
                           <p className="text-xs text-gray-600">
-                            Size: {item.size}
+                            Size: {item.size || 'N/A'}
                           </p>
                           <p className="text-xs text-gray-600">
-                            {item.startDate} - {item.endDate}
+                            {item.startDate || 'N/A'} - {item.endDate || 'N/A'}
                           </p>
                         </div>
                         <p className="font-medium text-sm ml-4">
-                          LKR {item.totalAmount.toLocaleString()}
+                          LKR {(item.totalAmount || 0).toLocaleString()}
                         </p>
                       </div>
                     ))}
