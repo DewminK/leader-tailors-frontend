@@ -12,7 +12,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center mb-4">
               <div className="relative w-[150px] h-[50px]">
                 <Image
-                  src="/logo.png"
+                  src="/logo1.png"
                   alt="Leader Tailors"
                   fill
                   sizes="200px"
