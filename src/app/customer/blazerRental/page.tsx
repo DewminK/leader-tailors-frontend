@@ -23,12 +23,12 @@ interface Blazer {
 const blazersData: Blazer[] = [
   {
     id: '1',
-    name: 'Sid Mashburn Ghost Blazer - Navy',
+    name: 'Sid Mashburn Ghost Blazer',
     price: 2500,
     images: [
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400',
-      'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400'
+      'https://shopmashburn.com/cdn/shop/products/S60806_2_1280x.jpg?v=1668124158&w=400',
+      'https://shopmashburn.com/cdn/shop/products/S60806_1_2048x2048.jpg?v=1744653354&w=400',
+      'https://shopmashburn.com/cdn/shop/files/S60806_3585_2048x2048.jpg?v=1744653354'
     ],
     sizes: ['M', 'L', 'XL'],
     fabric: 'English high-twist 100% wool',
@@ -38,107 +38,106 @@ const blazersData: Blazer[] = [
   },
   {
     id: '2',
-    name: 'Sid Mashburn Ghost Blazer - Blue',
-    price: 2500,
+    name: 'Classic Midnight Navy Blazer',
+    price: 2800,
     images: [
-      'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
-      'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?w=400'
+      'https://www.lordwillys.com/cdn/shop/files/IMG_9866.jpg?v=1757454112&w=400',
+      'https://cdn.hangrr.com/v7/s3/product/657/classic-midnight-blue-blazer-multi.webp?tr=w-1200,h-1400?w=400',
+      'https://shop.bluffworks.com/cdn/shop/products/HopsackBlazer_Navy_02.jpg?v=1626900971?w=400'
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: '100% Wool, English High-twist',
     construction: 'Constructed',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Tailored fit, dual vents, half-lined',
     event: ['Wedding', 'Gala']
   },
   {
     id: '3',
-    name: 'Sid Mashburn Ghost Blazer - Black',
-    price: 2500,
+    name: 'Charcoal Grey Blazer',
+    price: 2700,
     images: [
-      'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400',
-      'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400'
+      'https://themoderngroom.com/cdn/shop/files/TMG_Charcoal-Hero_2000x.jpg?v=1713982038?w=400',
+      'https://classy.ca/wp-content/uploads/2022/02/Charcoal-suit-grey-261-1-scaled-700x1050.jpg?w=400',
+    
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: 'Italian Linen Blend',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Perfect for formal events and receptions',
     event: ['Formal', 'Gala']
   },
   {
     id: '4',
-    name: 'Sid Mashburn Ghost Blazer - Grey',
-    price: 2500,
+    name: 'Light Beige Summer Blazer',
+    price: 3000,
     images: [
-      'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400',
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400'
+      'https://i.etsystatic.com/36064523/r/il/7bba25/4131221297/il_fullxfull.4131221297_7vvm.jpg?w=400',
+      'https://i.pinimg.com/564x/40/04/8d/40048d1c34a1d652c140edcf7e8ec223.jpg?w=400',
+      'https://cdn.lookastic.com/looks/blazer-dress-shirt-dress-pants-large-103577.jpg?w=400'
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: 'Cotton & Poly Mix',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Breathable, stylish for daytime events',
     event: ['Wedding', 'Party', 'Formal']
   },
   {
     id: '5',
-    name: 'Sid Mashburn Ghost Blazer - Charcoal',
-    price: 2500,
+    name: 'Black Tuxedo Blazer',
+    price: 2900,
     images: [
-      'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
-      'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400',
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400'
+      'https://content.moss.co.uk/images/extraextralarge/966152215_02.jpg?w=400',
+      'https://i.etsystatic.com/21096198/r/il/927507/2067665773/il_fullxfull.2067665773_k2bu.jpg?w=300',
+    
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: '100% Wool Satin Finish',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Premium finish ideal for weddings',
     event: ['Wedding', 'Formal']
   },
   {
     id: '6',
-    name: 'Sid Mashburn Ghost Blazer - Dark Blue',
-    price: 2500,
+    name: 'Royal Blue Slim Fit Blazer',
+    price: 3000,
     images: [
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
-      'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
-      'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?w=400'
+      'https://cdn.shopify.com/s/files/1/1079/1374/files/blog_royal_blue_suit_b_1024x1024.jpg?w=400',
+      'https://img.drz.lazcdn.com/static/bd/p/77f89ae15a4f972ded6c6a67ccbbf9a9.jpg_960x960q80.jpg_.webp?w=400',
+      'https://i.ebayimg.com/images/g/Q~gAAOSwBXldxntS/s-l1200.jpg?w=400'
     ],
     sizes: ['M', 'L', 'XL'],
     fabric: 'English high-twist 100% wool',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Elegant fit for modern ceremonies',
     event: ['Gala', 'Party']
   },
   {
     id: '7',
-    name: 'Sid Mashburn Ghost Blazer - Midnight',
+    name: 'Tweed Textured Blazer',
     price: 2500,
     images: [
-      'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400',
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
-      'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400'
+      'https://img.shopstyle-cdn.com/sim/87/08/8708200c4bd78c19151de8c689dad366_best/ralph-lauren-polo-tailored-plaid-tweed-sport-coat.jpg?w=400',
+      'https://i.pinimg.com/736x/c4/a7/fd/c4a7fd2ff5071f32eeb2166d51a02368.jpg?w=400',
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: 'Tweed Wool Blend',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Vintage style with soft shoulder tailoring',
     event: ['Wedding', 'Formal', 'Gala']
   },
   {
     id: '8',
-    name: 'Sid Mashburn Ghost Blazer - Steel',
-    price: 2500,
+    name: 'Classic White Dinner Blazer',
+    price: 2900,
     images: [
-      'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400',
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400'
+      'https://images.hawesandcurtis.com/tr:q-80/CO/COPLD287-N01-209469-1400px-1820px.jpg?w=400',
+      'https://m.media-amazon.com/images/I/51k+9P2Vs-L._UY1000_.jpg?w=400',
+      'https://editorialist.com/thumbnail/600/2022/5/019/381/671/19381671~white_1734442407563_0.webp?width=600&quality=60?w=400'
     ],
     sizes: ['M', 'L', 'XL'],
-    fabric: 'English high-twist 100% wool',
+    fabric: 'Polyester + Viscose',
     construction: 'Unlined',
-    structure: 'Unstructured shoulder, dual vents',
+    structure: 'Ideal for grooms and evening functions',
     event: ['Wedding', 'Party']
   }
 ];
@@ -206,12 +205,12 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
     time: '',
     size: ''
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validateForm = () => {
-    const newErrors: any = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -259,7 +258,7 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold mb-2">Booking Confirmed!</h3>
-          <p className="text-gray-600">We'll see you on {formData.date} at {formData.time}</p>
+          <p className="text-gray-600">We will see you on {formData.date} at {formData.time}</p>
         </div>
       </div>
     );
@@ -414,12 +413,12 @@ const ReservationModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => 
     expiryDate: '',
     cvv: ''
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validateStep1 = () => {
-    const newErrors: any = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -438,7 +437,7 @@ const ReservationModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => 
   };
 
   const validateStep2 = () => {
-    const newErrors: any = {};
+    const newErrors: { [key: string]: string } = {};
     
     if (!formData.size) newErrors.size = 'Size is required';
     if (!formData.startDate) newErrors.startDate = 'Start date is required';
@@ -463,7 +462,7 @@ const ReservationModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => 
   };
 
   const validateStep3 = () => {
-    const newErrors: any = {};
+    const newErrors: { [key: string]: string } = {};
     
     if (!formData.cardNumber.trim()) {
       newErrors.cardNumber = 'Card number is required';
@@ -994,7 +993,7 @@ export default function BlazerRentalApp() {
       
       {showReserveModal && selectedBlazer && (
         <ReservationProcess
-          blazer={selectedBlazer}
+          blazer={selectedBlazer as Blazer}
           onClose={() => {
             setShowReserveModal(false);
             setSelectedBlazer(null);
