@@ -39,6 +39,7 @@ const cars = [
 ];
 
 const decorations = [
+  { name: "No Decoration", image: "/dashboard/designs/premio.jpg", price: 0 },
   { name: "Fresh Flowers", image: "/dashboard/designs/fresh.jpg", price: 500 },
   { name: "Artificial Flowers", image: "/dashboard/designs/artificial.jpg", price: 300 },
   { name: "Rosa Flowers", image: "/dashboard/designs/rosa.jpg", price: 700 },
@@ -50,7 +51,7 @@ const WeddingCarRental = () => {
   const bookingRef = useRef<HTMLDivElement>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedCar, setSelectedCar] = useState<string>("Toyota Premio");
-  const [selectedDecoration, setSelectedDecoration] = useState<string>("Fresh Flowers");
+  const [selectedDecoration, setSelectedDecoration] = useState<string>("No Decoration");
   const [weddingDate, setWeddingDate] = useState<string>("");
   const [startLocation, setStartLocation] = useState<string>("");
   const [specialRequests, setSpecialRequests] = useState<string>("");
@@ -193,7 +194,9 @@ const WeddingCarRental = () => {
           {decorations.map((dec, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center group bg-gradient-to-br from-white via-gray-50 to-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-200 p-2 md:p-4 border border-gray-100 hover:border-gray-300"
+              className={`flex flex-col items-center group bg-gradient-to-br from-white via-gray-50 to-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-200 p-2 md:p-4 border border-gray-100 hover:border-gray-300 ${
+                idx === decorations.length - 1 && decorations.length % 4 !== 0 ? 'md:col-start-2 md:col-span-1' : ''
+              }`}
             >
               <div className="w-full aspect-[16/10] flex items-center justify-center overflow-hidden rounded-xl relative">
                 <Image 
