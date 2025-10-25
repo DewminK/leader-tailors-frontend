@@ -8,10 +8,9 @@ import DesignCard from "./components/design-card";
 import FeedbackCard from "./components/feedback-card";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Dashboard = () => {
-  const router = useRouter();
   const services = [
     {
       icon: <span className="text-4xl">✂️</span>,
@@ -20,6 +19,7 @@ const Dashboard = () => {
         "Bespoke Suits And Blazers Crafted To Perfection With Premium Fabric And Expert Craftsmanship.",
       linkText: "See More",
       linkColor: "text-orange-500",
+      route: "/customer/tailoring",
     },
     {
       icon: <span className="text-4xl">🎩</span>,
@@ -28,6 +28,7 @@ const Dashboard = () => {
         "Premium Blazer Rentals For Weddings, Events, And Special Occasions With Perfect Fitting Guarantee.",
       linkText: "Browse Collections",
       linkColor: "text-orange-500",
+      route: "/customer/blazerRental",
     },
     {
       icon: <span className="text-4xl">🚗</span>,
@@ -36,6 +37,7 @@ const Dashboard = () => {
         "Luxury Wedding Cars With Professional Decoration Services To Make Your Special Day Unforgettable.",
       linkText: "View Fleet",
       linkColor: "text-orange-500",
+      route: "/customer/weddingCarRental",
     },
     {
       icon: <span className="text-4xl">💐</span>,
@@ -44,6 +46,7 @@ const Dashboard = () => {
         "Complete Decoration Services For Weddings And Events With Fresh Or Artificial Floral Arrangements.",
       linkText: "See Gallery",
       linkColor: "text-orange-500",
+      route: "/gallery",
     },
   ];
 
@@ -161,14 +164,15 @@ const Dashboard = () => {
                 className="flex flex-wrap gap-4 pt-4"
                 variants={fadeInUp}
               >
-                <motion.button
-                  onClick={() => router.push("/appointment")}
-                  className="bg-black text-white px-6 py-3 rounded font-medium hover:bg-gray-800 transform transition-transform hover:scale-105"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Book Appointment
-                </motion.button>
+                <Link href="/appointment">
+                  <motion.button
+                    className="bg-black text-white px-6 py-3 rounded font-medium hover:bg-gray-800 transform transition-transform hover:scale-105"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Book Appointment
+                  </motion.button>
+                </Link>
 
                 <motion.button
                   className="bg-white text-black border-2 border-black px-6 py-3 rounded font-medium hover:bg-gray-50 transition-transform hover:scale-105"
@@ -181,13 +185,15 @@ const Dashboard = () => {
 
               {/* Yellow Button */}
               <motion.div className="pt-2" variants={fadeInUp}>
-                <motion.button
-                  className="bg-yellow-500 text-black px-6 py-3 rounded font-medium hover:bg-yellow-600 transition-transform hover:scale-105"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Rent Wedding Car
-                </motion.button>
+                <Link href="/customer/weddingCarRental">
+                  <motion.button
+                    className="bg-yellow-500 text-black px-6 py-3 rounded font-medium hover:bg-yellow-600 transition-transform hover:scale-105"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Rent Wedding Car
+                  </motion.button>
+                </Link>
               </motion.div>
             </motion.div>
 
@@ -245,6 +251,7 @@ const Dashboard = () => {
                   description={service.description}
                   linkText={service.linkText}
                   linkColor={service.linkColor}
+                  route={service.route}
                 />
               </motion.div>
             ))}
@@ -282,6 +289,7 @@ const Dashboard = () => {
             {products.map((product) => (
               <motion.div key={product.id} variants={scaleIn}>
                 <DesignCard
+                  id={product.id}
                   image={product.image}
                   title={product.title}
                   description={product.description}
