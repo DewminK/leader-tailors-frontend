@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface SignUpProps {
@@ -44,7 +43,7 @@ export default function SignUp({ onSwitchToLogin }: SignUpProps) {
     const users = JSON.parse(sessionStorage.getItem('users') || '[]');
     
     // Check if email already exists
-    const emailExists = users.some((u: any) => u.email === formData.email);
+    const emailExists = users.some((u: { email: string }) => u.email === formData.email);
     if (emailExists) {
       setError('Email already registered');
       return;

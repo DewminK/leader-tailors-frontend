@@ -159,7 +159,7 @@ export default function Home() {
             {/* --- MODIFIED: Navigation Tabs --- */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 text-center">
               <a href="#services-section" onClick={() => setActiveTab('blazers')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'blazers' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
-                Men's Blazers
+                Men&apos;s Blazers
               </a>
               <a href="#services-section" onClick={() => setActiveTab('uniforms')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'uniforms' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
                 School Uniforms
@@ -168,7 +168,7 @@ export default function Home() {
                 Customise
               </a>
               <a href="#services-section" onClick={() => setActiveTab('other')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'other' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
-                Men's Casual Outfits
+                Men&apos;s Casual Outfits
               </a>
             </div>
 

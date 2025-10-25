@@ -3,11 +3,20 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [cartCount, setCartCount] = useState(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileServices, setShowMobileServices] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    gender: string;
+    phoneNumber: string;
+  } | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);
@@ -80,12 +89,20 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
-      <div className="container mx-auto px-6 py-3">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 md:px-6 py-3">
         <div className="flex items-center justify-between">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            className="md:hidden text-black p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            {showMobileMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-[150px] h-[50px]">
+            <div className="relative w-[120px] h-[40px] md:w-[150px] md:h-[50px]">
               <Image
                 src="/logo.png"
                 alt="Leader Tailors Logo"
@@ -154,12 +171,12 @@ export default function Header() {
           </nav>
 
           {/* Cart and Right Side Actions */}
-          <div className="flex items-center space-x-5">
+          <div className="flex items-center space-x-2 md:space-x-5">
             <Link href="/customer/cart">
               <button className="relative text-black hover:text-white hover:bg-black rounded-full p-2 transition-all">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-5 w-5 md:h-6 md:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -181,13 +198,13 @@ export default function Header() {
 
             {/* Show Login button if no user is logged in, otherwise show Profile Icon */}
             {!currentUser ? (
-              <Link href="/auth">
+              <Link href="/auth" className="hidden md:block">
                 <button className="bg-black text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                   Log In
                 </button>
               </Link>
             ) : (
-              <div className="relative" ref={profileRef}>
+              <div className="relative hidden md:block" ref={profileRef}>
                 <button 
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
                   className="text-black hover:text-white hover:bg-black rounded-full p-2 transition-all"
@@ -248,6 +265,127 @@ export default function Header() {
             )}
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {showMobileMenu && (
+          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-3 pt-4">
+              <Link
+                href="/"
+                onClick={() => setShowMobileMenu(false)}
+                className={`text-gray-800 hover:text-gray-600 font-semibold py-2 px-4 rounded-lg transition-colors ${
+                  isActive("/") ? "bg-gray-100" : ""
+                }`}
+              >
+                Home
+              </Link>
+              
+              <div>
+                <button
+                  onClick={() => setShowMobileServices(!showMobileServices)}
+                  className={`w-full text-left text-gray-800 hover:text-gray-600 font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-between ${
+                    isServiceActive() ? "bg-gray-100" : ""
+                  }`}
+                >
+                  Our Services
+                  <svg
+                    className={`w-4 h-4 transition-transform ${showMobileServices ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showMobileServices && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    <Link
+                      href="/#premium-services"
+                      onClick={() => setShowMobileMenu(false)}
+                      className="block text-gray-700 hover:text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >
+                      All Services
+                    </Link>
+                    <Link
+                      href="/customer/tailoring"
+                      onClick={() => setShowMobileMenu(false)}
+                      className="block text-gray-700 hover:text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >
+                      Custom Tailoring
+                    </Link>
+                    <Link
+                      href="/customer/weddingCarRental"
+                      onClick={() => setShowMobileMenu(false)}
+                      className="block text-gray-700 hover:text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >
+                      Wedding Car Rental
+                    </Link>
+                    <Link
+                      href="/customer/blazerRental"
+                      onClick={() => setShowMobileMenu(false)}
+                      className="block text-gray-700 hover:text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-50"
+                    >
+                      Blazer Rental
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/customer/aboutus"
+                onClick={() => setShowMobileMenu(false)}
+                className={`text-gray-800 hover:text-gray-600 font-semibold py-2 px-4 rounded-lg transition-colors ${
+                  isActive("/customer/aboutus") ? "bg-gray-100" : ""
+                }`}
+              >
+                About Us
+              </Link>
+              
+              <Link
+                href="/contact"
+                onClick={() => setShowMobileMenu(false)}
+                className={`text-gray-800 hover:text-gray-600 font-semibold py-2 px-4 rounded-lg transition-colors ${
+                  isActive("/contact") ? "bg-gray-100" : ""
+                }`}
+              >
+                Contact Us
+              </Link>
+
+              {/* Mobile Login/Profile */}
+              {!currentUser ? (
+                <Link href="/auth" onClick={() => setShowMobileMenu(false)}>
+                  <button className="w-full bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                    Log In
+                  </button>
+                </Link>
+              ) : (
+                <div className="border-t border-gray-200 pt-4 mt-4">
+                  <div className="flex items-center mb-4 px-4">
+                    <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-lg font-bold text-gray-700">
+                      {currentUser.firstName[0]}{currentUser.lastName[0]}
+                    </div>
+                    <div className="ml-3">
+                      <div className="font-semibold text-gray-900 text-sm">
+                        {currentUser.firstName} {currentUser.lastName}
+                      </div>
+                      <div className="text-xs text-gray-500">{currentUser.email}</div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setShowMobileMenu(false);
+                    }}
+                    className="w-full bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

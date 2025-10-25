@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 // Define the props interface, including a function to close the modal
 interface MeasurementGuideProps {
   onClose: () => void;
@@ -75,7 +73,7 @@ export default function MeasurementGuide({ onClose }: MeasurementGuideProps) {
           {/* --- CHANGE: Made "Pro Tips" title black for emphasis --- */}
           <h4 className="font-bold text-lg mb-4 text-black">Pro Tips</h4>
           <ul className="space-y-3 text-gray-800">
-            <li className="flex items-center gap-3"><CheckIcon /> Wear the type of clothing you'll be wearing with the garment</li>
+            <li className="flex items-center gap-3"><CheckIcon /> Wear the type of clothing you&apos;ll be wearing with the garment</li>
             <li className="flex items-center gap-3"><CheckIcon /> Use a soft measuring tape, not a ruler</li>
             <li className="flex items-center gap-3"><CheckIcon /> Keep the tape measure snug but not tight</li>
             <li className="flex items-center gap-3"><CheckIcon /> Have someone help you for more accurate measurements</li>

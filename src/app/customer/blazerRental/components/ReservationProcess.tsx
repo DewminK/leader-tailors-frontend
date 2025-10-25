@@ -336,6 +336,7 @@ import { X, Check } from 'lucide-react';
 
 interface Blazer {
   id: string;
+  id: string;
   name: string;
   price: number;
   images: string[];

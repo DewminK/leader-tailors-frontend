@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import SelectedItems from "./components/selectedItems";
 import MainHeader from "../../components/Header";
 import MainFooter from "../../components/Footer";

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
-import { ShoppingCart, User, Calendar, X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import Image from 'next/image';
 import MainHeader from '../../components/Header';
 import MainFooter from '../../components/Footer';
 import BookAppointment from './components/BookAppointment';
@@ -155,10 +156,12 @@ const ImageSlideshow = ({ images }: { images: string[] }) => {
 
   return (
     <div className="relative w-full h-64 bg-gray-100 group">
-      <img
+      <Image
         src={images[currentIndex]}
         alt="Blazer"
-        className="w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       
       {images.length > 1 && (
@@ -389,10 +392,9 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
 };
 
 // Blazer Card Component
-const BlazerCard = ({ blazer, onReserve, onTryOn }: { 
+const BlazerCard = ({ blazer, onReserve }: { 
   blazer: Blazer; 
-  onReserve: () => void; 
-  onTryOn: () => void;
+  onReserve: () => void;
 }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -541,7 +543,6 @@ export default function BlazerRentalApp() {
               key={blazer.id}
               blazer={blazer}
               onReserve={() => handleReserve(blazer)}
-              onTryOn={() => handleTryOn(blazer)}
             />
           ))}
         </div>

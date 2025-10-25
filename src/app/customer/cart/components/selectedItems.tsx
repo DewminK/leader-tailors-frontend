@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CartItem {
   id: string;
