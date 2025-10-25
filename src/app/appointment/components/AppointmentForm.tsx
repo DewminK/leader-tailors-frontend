@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SERVICE_TYPES = [
   { value: "tailoring", label: "Tailoring" },
@@ -10,12 +10,24 @@ const SERVICE_TYPES = [
   { value: "decorations", label: "Decorations" },
 ];
 
+const TAILORING_TYPES = [
+  { value: "blazers", label: "Blazers" },
+  { value: "uniforms", label: "School Uniforms" },
+  { value: "custom", label: "Custom Tailoring" },
+  { value: "shirts", label: "Shirts" },
+  { value: "trousers", label: "Trousers" },
+  { value: "wedding-suits", label: "Wedding Suits" },
+  { value: "other", label: "Other" },
+];
+
 export default function AppointmentForm() {
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
     email: "",
     serviceType: "",
+    tailoringType: "",
+    tailoringDetails: "",
     date: "",
     time: "",
   });
@@ -26,17 +38,37 @@ export default function AppointmentForm() {
   // Show success after booking
   const [bookingSuccess, setBookingSuccess] = useState(false);
 
+  // Load pre-selected tailoring type from localStorage on mount
+  useEffect(() => {
+    const selectedTailoring = localStorage.getItem("selectedTailoringType");
+    const tailoringDetails = localStorage.getItem("selectedTailoringDetails");
+    
+    if (selectedTailoring) {
+      setFormData((prev) => ({
+        ...prev,
+        serviceType: "tailoring",
+        tailoringType: selectedTailoring,
+        tailoringDetails: tailoringDetails || "",
+      }));
+      
+      // Clear localStorage after loading
+      localStorage.removeItem("selectedTailoringType");
+      localStorage.removeItem("selectedTailoringDetails");
+    }
+  }, []);
+
   // Lightweight "all required fields present" check
   const isFormComplete =
     formData.fullName &&
     formData.phoneNumber &&
     formData.email &&
     formData.serviceType &&
+    (formData.serviceType !== "tailoring" || formData.tailoringType) &&
     formData.date &&
     formData.time;
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -68,6 +100,8 @@ export default function AppointmentForm() {
       phoneNumber: "",
       email: "",
       serviceType: "",
+      tailoringType: "",
+      tailoringDetails: "",
       date: "",
       time: "",
     });
@@ -194,6 +228,58 @@ export default function AppointmentForm() {
                 </select>
               </div>
 
+              {/* Tailoring Type - Only shown when Tailoring is selected */}
+              {formData.serviceType === "tailoring" && (
+                <>
+                  <div>
+                    <label
+                      htmlFor="tailoringType"
+                      className="block text-gray-700 font-medium mb-2"
+                    >
+                      Tailoring Type
+                    </label>
+                    <select
+                      id="tailoringType"
+                      name="tailoringType"
+                      value={formData.tailoringType}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-2 border border-gray-300 rounded-lg 
+                      focus:outline-none focus:ring-2 focus:ring-black bg-white
+                      ${!formData.tailoringType ? "text-gray-400" : "text-gray-900"}`}
+                    >
+                      <option value="" disabled>
+                        Select tailoring type
+                      </option>
+                      {TAILORING_TYPES.map((type) => (
+                        <option key={type.value} value={type.value}>
+                          {type.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Tailoring Details/Specific Item */}
+                  <div>
+                    <label
+                      htmlFor="tailoringDetails"
+                      className="block text-gray-700 font-medium mb-2"
+                    >
+                      Specific Item/Details
+                      <span className="text-gray-500 text-sm ml-1">(Optional)</span>
+                    </label>
+                    <textarea
+                      id="tailoringDetails"
+                      name="tailoringDetails"
+                      placeholder="E.g., Single Breasted Slim Fit Blazer, Navy Blue Uniform, etc."
+                      value={formData.tailoringDetails}
+                      onChange={handleInputChange}
+                      rows={3}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black placeholder-gray-400"
+                    />
+                  </div>
+                </>
+              )}
+
               {/* Preferred Date and Time */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -272,6 +358,23 @@ export default function AppointmentForm() {
                   {getServiceLabel()}
                 </span>
               </div>
+
+              {/* Tailoring Type Summary - Only shown for tailoring */}
+              {formData.serviceType === "tailoring" && formData.tailoringType && (
+                <div className="flex justify-between items-start">
+                  <span className="text-gray-600">Tailoring Type</span>
+                  <div className="text-right">
+                    <div className="font-semibold text-gray-900">
+                      {TAILORING_TYPES.find((t) => t.value === formData.tailoringType)?.label || "—"}
+                    </div>
+                    {formData.tailoringDetails && (
+                      <div className="text-xs text-gray-500 mt-1">
+                        {formData.tailoringDetails}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Date Summary */}
               <div className="flex justify-between items-center">

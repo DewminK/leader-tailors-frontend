@@ -23,7 +23,13 @@ interface Service {
 export default function Home() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Service | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [activeTab, setActiveTab] = useState('blazers');
+
+  const handleProductClick = (service: Service, category: string) => {
+    setSelectedProduct(service);
+    setSelectedCategory(category);
+  };
 
   // --- MOCK DATA FOR EACH SECTION ---
 
@@ -119,10 +125,6 @@ export default function Home() {
     }
   ];
 
-  const handleProductClick = (product: Service) => {
-    setSelectedProduct(product);
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -175,7 +177,7 @@ export default function Home() {
               {activeTab === 'blazers' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {blazersData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'blazers')} tailoringCategory="blazers" />
                   ))}
                 </div>
               )}
@@ -183,7 +185,7 @@ export default function Home() {
               {activeTab === 'uniforms' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {uniformsData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'uniforms')} tailoringCategory="uniforms" />
                   ))}
                 </div>
               )}
@@ -191,7 +193,7 @@ export default function Home() {
               {activeTab === 'customise' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {customData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'custom')} tailoringCategory="custom" />
                   ))}
                 </div>
               )}
@@ -199,7 +201,7 @@ export default function Home() {
               {activeTab === 'other' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {otherData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'other')} tailoringCategory="other" />
                   ))}
                 </div>
               )}
@@ -213,7 +215,7 @@ export default function Home() {
 
       {/* Modals */}
       {isGuideOpen && <MeasurementGuide onClose={() => setIsGuideOpen(false)} />}
-      {selectedProduct && <ProductDetailCard product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
+      {selectedProduct && <ProductDetailCard product={selectedProduct} onClose={() => setSelectedProduct(null)} tailoringCategory={selectedCategory} />}
     </div>
   )
 }

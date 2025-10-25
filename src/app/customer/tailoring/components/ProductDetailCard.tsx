@@ -1,5 +1,7 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Define an interface for the detailed product data
 interface Product {
@@ -17,6 +19,7 @@ interface Product {
 interface ProductDetailCardProps {
   product: Product;
   onClose: () => void;
+  tailoringCategory?: string;
 }
 
 // A reusable CheckIcon for the features list
@@ -26,9 +29,31 @@ const CheckIcon = () => (
   </svg>
 );
 
-export default function ProductDetailCard({ product, onClose }: ProductDetailCardProps) {
+export default function ProductDetailCard({ product, onClose, tailoringCategory }: ProductDetailCardProps) {
+  const router = useRouter();
+  
   // We'll use the product's main image for all thumbnails in this example
   const thumbnails = [product.image, product.image, product.image];
+
+  const handleBookAppointment = () => {
+    // Determine category based on product title if not provided
+    let category = tailoringCategory;
+    if (!category) {
+      if (product.title.toLowerCase().includes('blazer')) category = 'blazers';
+      else if (product.title.toLowerCase().includes('uniform')) category = 'uniforms';
+      else if (product.title.toLowerCase().includes('wedding')) category = 'wedding-suits';
+      else if (product.title.toLowerCase().includes('shirt')) category = 'shirts';
+      else if (product.title.toLowerCase().includes('trouser')) category = 'trousers';
+      else category = 'custom';
+    }
+    
+    // Save the selected tailoring type and details to localStorage
+    localStorage.setItem("selectedTailoringType", category);
+    localStorage.setItem("selectedTailoringDetails", product.title);
+    
+    // Navigate to appointment page
+    router.push("/appointment");
+  };
 
   return (
     // Modal backdrop with blur effect
@@ -110,12 +135,12 @@ export default function ProductDetailCard({ product, onClose }: ProductDetailCar
 
         {/* Footer with Buttons */}
         <div className="flex justify-end items-center gap-4 p-4 bg-gray-50 border-t border-gray-200 rounded-b-lg mt-auto">
-          <Link
-            href="/appointment"
+          <button
+            onClick={handleBookAppointment}
             className="bg-black text-white px-5 py-2 rounded-md font-semibold text-sm hover:bg-gray-800 transition-colors"
           >
             Book Appointment
-          </Link>
+          </button>
           <button
             onClick={onClose}
             className="bg-white text-black border border-gray-400 px-5 py-2 rounded-md font-semibold text-sm hover:bg-gray-100 transition-colors"

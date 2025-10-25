@@ -1,14 +1,32 @@
+'use client';
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 interface ServiceCardProps {
   title: string
   price: string
   image: string
   onCardClick: () => void;
+  tailoringCategory?: string;
 }
 
-export default function ServiceCard({ title, price, image, onCardClick }: ServiceCardProps) {
+export default function ServiceCard({ title, price, image, onCardClick, tailoringCategory }: ServiceCardProps) {
+  const router = useRouter();
+
+  const handleBookAppointment = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
+    
+    // Save the selected tailoring type and details to localStorage
+    if (tailoringCategory) {
+      localStorage.setItem("selectedTailoringType", tailoringCategory);
+      localStorage.setItem("selectedTailoringDetails", title);
+    }
+    
+    // Navigate to appointment page
+    router.push("/appointment");
+  };
+
   return (
     <div
       className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer pb-3"
@@ -32,10 +50,7 @@ export default function ServiceCard({ title, price, image, onCardClick }: Servic
         <Link
         href="/appointment"
         className="w-60 mx-auto block bg-black text-white text-center py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
-        // Stop the click event from bubbling up to the parent div
-        onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-          e.stopPropagation();
-        }}
+        onClick={handleBookAppointment}
       >
         Book Appointment
       </Link>

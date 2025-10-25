@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ServiceCardProps {
     icon?: React.ReactNode;
@@ -6,11 +8,23 @@ interface ServiceCardProps {
     description?: string;
     linkText?: string;
     linkColor?: string;
+    route?: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, linkText, linkColor }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, linkText, linkColor, route }) => {
+    const router = useRouter();
+
+    const handleClick = () => {
+        if (route) {
+            router.push(route);
+        }
+    };
+
     return (
-        <div className="max-w-sm bg-gray-200 rounded-lg p-6 hover:shadow-xl hover:scale-105 transition-transaction duration-300">
+        <div 
+            className="max-w-sm bg-gray-200 rounded-lg p-6 hover:shadow-xl hover:scale-105 transition-transaction duration-300 cursor-pointer"
+            onClick={handleClick}
+        >
             {/* Icon */}
             <div className="mb-4">
                 {icon}
