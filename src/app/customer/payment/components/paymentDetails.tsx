@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface CartItem {
   id: string;
@@ -24,6 +25,7 @@ interface PaymentDetailsProps {
 }
 
 export default function PaymentDetails({ orderDetails }: PaymentDetailsProps) {
+  const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState("");
   const [deliveryOption, setDeliveryOption] = useState("");
   const [cardDetails, setCardDetails] = useState({
@@ -65,8 +67,17 @@ export default function PaymentDetails({ orderDetails }: PaymentDetailsProps) {
       paymentData,
     });
 
-    // Redirect to confirmation page or show success message
+    // Clear cart and order details from localStorage
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("orderDetails");
+    localStorage.removeItem("customerDetails");
+
+    // Dispatch event to update cart count in header
+    window.dispatchEvent(new Event("cartUpdated"));
+
+    // Show success message and redirect to home
     alert("Order placed successfully!");
+    router.push("/");
   };
 
   // Reset payment method when delivery option changes
