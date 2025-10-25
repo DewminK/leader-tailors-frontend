@@ -27,10 +27,6 @@ export default function Header() {
             <Link href="/" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
               Home
             </Link>
-            <Link href="/services" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
-              Our Services
-            </Link>
-            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
             <div className="relative group">
               <button className="text-gray-800 hover:text-gray-600 font-semibold transition-colors flex items-center focus:outline-none">
                 Our Services
@@ -42,7 +38,7 @@ export default function Header() {
                 {/* Add more service links here as needed */}
               </div>
             </div>
-            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors border-b-2 border-gray-800 pb-1">
+            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
               About Us
             </Link>
             <Link href="/contact" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
