@@ -17,6 +17,7 @@ interface Blazer {
   construction: string;
   structure: string;
   event: string[];
+  image?: string; // Add this for cart compatibility
 }
 
 // Blazer Data
@@ -58,7 +59,6 @@ const blazersData: Blazer[] = [
     images: [
       'https://themoderngroom.com/cdn/shop/files/TMG_Charcoal-Hero_2000x.jpg?v=1713982038?w=400',
       'https://classy.ca/wp-content/uploads/2022/02/Charcoal-suit-grey-261-1-scaled-700x1050.jpg?w=400',
-    
     ],
     sizes: ['M', 'L', 'XL'],
     fabric: 'Italian Linen Blend',
@@ -88,7 +88,6 @@ const blazersData: Blazer[] = [
     images: [
       'https://content.moss.co.uk/images/extraextralarge/966152215_02.jpg?w=400',
       'https://i.etsystatic.com/21096198/r/il/927507/2067665773/il_fullxfull.2067665773_k2bu.jpg?w=300',
-    
     ],
     sizes: ['M', 'L', 'XL'],
     fabric: '100% Wool Satin Finish',
@@ -141,8 +140,6 @@ const blazersData: Blazer[] = [
     event: ['Wedding', 'Party']
   }
 ];
-
-// Header component is now imported from components/Header
 
 // Image Slideshow Component
 const ImageSlideshow = ({ images }: { images: string[] }) => {
@@ -226,7 +223,6 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
     if (!formData.time) newErrors.time = 'Time is required';
     if (!formData.size) newErrors.size = 'Size is required';
 
-    // Check if date is in the future
     if (formData.date) {
       const selectedDate = new Date(formData.date);
       const today = new Date();
@@ -392,237 +388,6 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
   );
 };
 
-// Reservation Modal Component
-const ReservationModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }) => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    // Personal Details
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    
-    // Rental Details
-    size: '',
-    startDate: '',
-    endDate: '',
-    
-    // Payment
-    cardNumber: '',
-    cardName: '',
-    expiryDate: '',
-    cvv: ''
-  });
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [submitted, setSubmitted] = useState(false);
-
-  const validateStep1 = () => {
-    const newErrors: { [key: string]: string } = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone is required';
-    } else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
-      newErrors.phone = 'Phone must be 10 digits';
-    }
-    if (!formData.address.trim()) newErrors.address = 'Address is required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const validateStep2 = () => {
-    const newErrors: { [key: string]: string } = {};
-    
-    if (!formData.size) newErrors.size = 'Size is required';
-    if (!formData.startDate) newErrors.startDate = 'Start date is required';
-    if (!formData.endDate) newErrors.endDate = 'End date is required';
-
-    if (formData.startDate && formData.endDate) {
-      const start = new Date(formData.startDate);
-      const end = new Date(formData.endDate);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      if (start < today) {
-        newErrors.startDate = 'Start date must be in the future';
-      }
-      if (end <= start) {
-        newErrors.endDate = 'End date must be after start date';
-      }
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const validateStep3 = () => {
-    const newErrors: { [key: string]: string } = {};
-    
-    if (!formData.cardNumber.trim()) {
-      newErrors.cardNumber = 'Card number is required';
-    } else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) {
-      newErrors.cardNumber = 'Card number must be 16 digits';
-    }
-    
-    if (!formData.cardName.trim()) newErrors.cardName = 'Cardholder name is required';
-    
-    if (!formData.expiryDate.trim()) {
-      newErrors.expiryDate = 'Expiry date is required';
-    } else if (!/^\d{2}\/\d{2}$/.test(formData.expiryDate)) {
-      newErrors.expiryDate = 'Format: MM/YY';
-    }
-    
-    if (!formData.cvv.trim()) {
-      newErrors.cvv = 'CVV is required';
-    } else if (!/^\d{3}$/.test(formData.cvv)) {
-      newErrors.cvv = 'CVV must be 3 digits';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleNext = () => {
-    if (step === 1 && validateStep1()) {
-      setStep(2);
-    } else if (step === 2 && validateStep2()) {
-      setStep(3);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateStep3()) {
-      setSubmitted(true);
-      setTimeout(() => {
-        onClose();
-      }, 3000);
-    }
-  };
-
-  const calculateDays = () => {
-    if (formData.startDate && formData.endDate) {
-      const start = new Date(formData.startDate);
-      const end = new Date(formData.endDate);
-      const days = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-      return days > 0 ? days : 0;
-    }
-    return 0;
-  };
-
-
-  if (addedToCart) {
-    return (
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-green-600" />
-          </div>
-          <h3 className="text-2xl font-bold mb-2">Added to Cart!</h3>
-          <p className="text-gray-600">{blazer.name} - Size: {selectedSize}</p>
-          <p className="text-gray-600 mt-2">Rental Period: {calculateDays()} days</p>
-          <p className="text-gray-600">Total: LKR {totalAmount.toLocaleString()}</p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-lg max-w-md w-full my-8 shadow-2xl border border-gray-100">
-        <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-          <h2 className="text-2xl font-bold">Select Size & Dates</h2>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <div className="p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-bold mb-2">{blazer.name}</h3>
-            <p className="text-sm text-gray-600">{blazer.fabric}</p>
-            <p className="text-lg font-bold mt-2">LKR {blazer.price.toLocaleString()} / day</p>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-3">Select Size *</label>
-            <div className="flex gap-2">
-              {blazer.sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`px-6 py-3 border-2 rounded-lg font-medium text-lg ${
-                    selectedSize === size
-                      ? 'bg-black text-white border-black'
-                      : 'border-gray-300 hover:border-black'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Start Date *</label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                min={new Date().toISOString().split('T')[0]}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">End Date *</label>
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                min={startDate || new Date().toISOString().split('T')[0]}
-              />
-            </div>
-          </div>
-
-          {calculateDays() > 0 && (
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-blue-800">Rental Duration:</span>
-                <span className="font-bold text-blue-800">{calculateDays()} day(s)</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-blue-800">Total Amount:</span>
-                <span className="font-bold text-lg text-blue-800">LKR {totalAmount.toLocaleString()}</span>
-              </div>
-            </div>
-          )}
-
-          <button
-            onClick={handleAddToCart}
-            disabled={!selectedSize || !startDate || !endDate}
-            className={`w-full py-4 rounded-lg font-medium text-lg transition-colors ${
-              selectedSize && startDate && endDate
-                ? 'bg-black text-white hover:bg-gray-800'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
-          >
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // Blazer Card Component
 const BlazerCard = ({ blazer, onReserve, onTryOn }: { 
   blazer: Blazer; 
@@ -726,7 +491,12 @@ export default function BlazerRentalApp() {
   const [priceFilter, setPriceFilter] = useState('');
 
   const handleReserve = (blazer: Blazer) => {
-    setSelectedBlazer(blazer);
+    // Add the image property (first image from images array)
+    const blazerWithImage = {
+      ...blazer,
+      image: blazer.images[0]
+    };
+    setSelectedBlazer(blazerWithImage);
     setShowReserveModal(true);
   };
 
@@ -754,7 +524,7 @@ export default function BlazerRentalApp() {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">PREMIUM BLAZER RENTALS</h1>
           <p className="text-gray-800 max-w-2xl mx-auto">
-            Elevate your special moments with our curated collection if luxury blazers for weddings, parties, galas and formal events
+            Elevate your special moments with our curated collection of luxury blazers for weddings, parties, galas and formal events
           </p>
         </div>
         
@@ -779,7 +549,7 @@ export default function BlazerRentalApp() {
       
       {showReserveModal && selectedBlazer && (
         <ReservationProcess
-          blazer={selectedBlazer as Blazer}
+          blazer={selectedBlazer}
           onClose={() => {
             setShowReserveModal(false);
             setSelectedBlazer(null);
