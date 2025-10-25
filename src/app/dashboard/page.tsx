@@ -316,7 +316,7 @@ const Dashboard = () => {
               What Our Client Say
             </h2>
             <p className="text-gray-600 text-base">
-              Trusted by thousand for life's most importnat moments
+              Trusted by thousand for life&apos;s most importnat moments
             </p>
           </motion.div>
 

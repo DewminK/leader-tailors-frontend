@@ -7,7 +7,13 @@ import { usePathname, useRouter } from "next/navigation";
 export default function Header() {
   const [cartCount, setCartCount] = useState(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    gender: string;
+    phoneNumber: string;
+  } | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const profileRef = useRef<HTMLDivElement>(null);

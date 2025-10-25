@@ -8,7 +8,7 @@ interface Blazer {
   fabric?: string;
   price: number;
   sizes: string[];
-  [key: string]: any;
+  [key: string]: string | number | string[] | undefined;
 }
 
 interface PaymentFormData {
@@ -52,11 +52,11 @@ const ReservationProcess = ({
     expiryDate: '',
     cvv: ''
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validatePersonalInfo = () => {
-    const newErrors: any = {};
+    const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
@@ -76,7 +76,7 @@ const ReservationProcess = ({
   };
 
   const validateRentalDetails = () => {
-    const newErrors: any = {};
+    const newErrors: Record<string, string> = {};
     
     if (!formData.size) newErrors.size = 'Size is required';
     if (!formData.startDate) newErrors.startDate = 'Start date is required';
@@ -101,7 +101,7 @@ const ReservationProcess = ({
   };
 
   const validatePayment = () => {
-    const newErrors: any = {};
+    const newErrors: Record<string, string> = {};
     
     if (!paymentData.cardNumber.trim()) {
       newErrors.cardNumber = 'Card number is required';

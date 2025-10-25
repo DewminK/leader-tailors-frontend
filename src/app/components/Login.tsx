@@ -29,7 +29,8 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
     
     // Find user with matching credentials
     const user = users.find(
-      (u: any) => u.email === formData.email && u.password === formData.password
+      (u: { email: string; password: string; firstName: string; lastName: string; gender: string; phoneNumber: string }) => 
+        u.email === formData.email && u.password === formData.password
     );
 
     if (user) {
@@ -146,7 +147,7 @@ export default function Login({ onSwitchToSignUp }: LoginProps) {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white/95 text-gray-500">Don't have an account?</span>
+            <span className="px-2 bg-white/95 text-gray-500">Don&apos;t have an account?</span>
           </div>
         </div>
 

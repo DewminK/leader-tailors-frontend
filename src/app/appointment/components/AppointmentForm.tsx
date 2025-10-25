@@ -137,7 +137,7 @@ export default function AppointmentForm() {
               Appointment Details
             </h2>
             <p className="text-gray-500 text-sm mb-6">
-              Fill in your information and we'll get back to you to confirm your
+              Fill in your information and we&apos;ll get back to you to confirm your
               appointment
             </p>
 

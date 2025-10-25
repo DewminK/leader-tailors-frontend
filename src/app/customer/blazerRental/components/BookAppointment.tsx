@@ -11,11 +11,11 @@ const BookAppointment = () => {
     date: '',
     time: '',
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validateForm = () => {
-    const newErrors: any = {};
+    const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
@@ -71,7 +71,7 @@ const BookAppointment = () => {
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold mb-2">Appointment Confirmed!</h3>
-          <p className="text-gray-600">We'll see you on {formData.date} at {formData.time}</p>
+          <p className="text-gray-600">We&apos;ll see you on {formData.date} at {formData.time}</p>
         </div>
       </div>
     );

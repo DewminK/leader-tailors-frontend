@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from 'react';
-import { ShoppingCart, User, Calendar, X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import Image from 'next/image';
 import MainHeader from '../../components/Header';
 import MainFooter from '../../components/Footer';
 import BookAppointment from './components/BookAppointment';
-import ReservationProcess from './components/ReservationProcess';
 
 // Types
 interface Blazer {
@@ -159,10 +159,12 @@ const ImageSlideshow = ({ images }: { images: string[] }) => {
 
   return (
     <div className="relative w-full h-64 bg-gray-100 group">
-      <img
+      <Image
         src={images[currentIndex]}
         alt="Blazer"
-        className="w-full h-full object-cover"
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       
       {images.length > 1 && (
@@ -206,11 +208,11 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
     time: '',
     size: ''
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validateForm = () => {
-    const newErrors: any = {};
+    const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
@@ -259,7 +261,7 @@ const TryOnModal = ({ blazer, onClose }: { blazer: Blazer; onClose: () => void }
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold mb-2">Booking Confirmed!</h3>
-          <p className="text-gray-600">We'll see you on {formData.date} at {formData.time}</p>
+          <p className="text-gray-600">We&apos;ll see you on {formData.date} at {formData.time}</p>
         </div>
       </div>
     );
@@ -547,10 +549,9 @@ const SizeSelection = ({ blazer, onClose }: { blazer: Blazer; onClose: () => voi
 };
 
 // Blazer Card Component
-const BlazerCard = ({ blazer, onReserve, onTryOn }: { 
+const BlazerCard = ({ blazer, onReserve }: { 
   blazer: Blazer; 
-  onReserve: () => void; 
-  onTryOn: () => void;
+  onReserve: () => void;
 }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -694,7 +695,6 @@ export default function BlazerRentalApp() {
               key={blazer.id}
               blazer={blazer}
               onReserve={() => handleReserve(blazer)}
-              onTryOn={() => handleTryOn(blazer)}
             />
           ))}
         </div>
