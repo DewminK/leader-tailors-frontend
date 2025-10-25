@@ -6,23 +6,23 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const images = [
-  { src: "/gallery/blazer1.jpg", category: "Blazers", id: 1 }, // Added IDs for unique keys
-  { src: "/gallery/blazer2.jpg", category: "Blazers", id: 2 },
-  { src: "/gallery/blazer3.jpg", category: "Blazers", id: 3 },
-  { src: "/gallery/blazer4.jpg", category: "Blazers", id: 4 },
-   { src: "/gallery/blazer5.jpeg", category: "Blazers", id: 12 },
-    { src: "/gallery/blazer7.jpg", category: "Blazers", id: 16 },
-     { src: "/gallery/blazer6.jpg", category: "Blazers", id: 17 },
-  { src: "/gallery/vehicle1.jpg", category: "Vehicles", id: 5 },
-  { src: "/gallery/vehicle2.jpg", category: "Vehicles", id: 6 },
-   { src: "/gallery/vehicle3.jpg", category: "Vehicles", id: 15 },
-  { src: "/gallery/vehicle4.jpg", category: "Vehicles", id: 7 },
-  { src: "/gallery/vehicle5.jpg", category: "Vehicles", id: 8 },
-  { src: "/gallery/deco1.jpg", category: "Decorations", id: 9 },
-  { src: "/gallery/deco2.jpeg", category: "Decorations", id: 10 },
-  { src: "/gallery/deco3.jpg", category: "Decorations", id: 11 },
-  { src: "/gallery/deco4.jpg", category: "Decorations", id: 13 },
-   { src: "/gallery/deco5.jpeg", category: "Decorations", id: 14 },
+  { src: "/Gallery/blazer1.jpg", category: "Blazers", id: 1 }, // Added IDs for unique keys
+  { src: "/Gallery/blazer2.jpg", category: "Blazers", id: 2 },
+  { src: "/Gallery/blazer3.jpg", category: "Blazers", id: 3 },
+  { src: "/Gallery/blazer4.jpg", category: "Blazers", id: 4 },
+   { src: "/Gallery/blazer5.jpeg", category: "Blazers", id: 12 },
+    { src: "/Gallery/blazer7.jpg", category: "Blazers", id: 16 },
+     { src: "/Gallery/blazer6.jpg", category: "Blazers", id: 17 },
+  { src: "/Gallery/vehicle1.jpg", category: "Vehicles", id: 5 },
+  { src: "/Gallery/vehicle2.jpg", category: "Vehicles", id: 6 },
+   { src: "/Gallery/vehicle3.jpg", category: "Vehicles", id: 15 },
+  { src: "/Gallery/vehicle4.jpg", category: "Vehicles", id: 7 },
+  { src: "/Gallery/vehicle5.jpg", category: "Vehicles", id: 8 },
+  { src: "/Gallery/deco1.jpg", category: "Decorations", id: 9 },
+  { src: "/Gallery/deco2.jpeg", category: "Decorations", id: 10 },
+  { src: "/Gallery/deco3.jpg", category: "Decorations", id: 11 },
+  { src: "/Gallery/deco4.jpg", category: "Decorations", id: 13 },
+   { src: "/Gallery/deco5.jpeg", category: "Decorations", id: 14 },
   // Add more images as needed; assume chronological order (older first)
 ];
 
