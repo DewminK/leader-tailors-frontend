@@ -24,7 +24,7 @@ const blazersData: Blazer[] = [
   {
     id: '1',
     name: 'Sid Mashburn Ghost Blazer - Navy',
-    price: 2500,
+    price: 3200,
     images: [
       'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400',
@@ -39,7 +39,7 @@ const blazersData: Blazer[] = [
   {
     id: '2',
     name: 'Sid Mashburn Ghost Blazer - Blue',
-    price: 2500,
+    price: 2800,
     images: [
       'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
       'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
@@ -54,7 +54,7 @@ const blazersData: Blazer[] = [
   {
     id: '3',
     name: 'Sid Mashburn Ghost Blazer - Black',
-    price: 2500,
+    price: 3500,
     images: [
       'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400',
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400',
@@ -84,7 +84,7 @@ const blazersData: Blazer[] = [
   {
     id: '5',
     name: 'Sid Mashburn Ghost Blazer - Charcoal',
-    price: 2500,
+    price: 2900,
     images: [
       'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
       'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400',
@@ -99,7 +99,7 @@ const blazersData: Blazer[] = [
   {
     id: '6',
     name: 'Sid Mashburn Ghost Blazer - Dark Blue',
-    price: 2500,
+    price: 3100,
     images: [
       'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
       'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400',
@@ -114,7 +114,7 @@ const blazersData: Blazer[] = [
   {
     id: '7',
     name: 'Sid Mashburn Ghost Blazer - Midnight',
-    price: 2500,
+    price: 2700,
     images: [
       'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400',
       'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
@@ -129,7 +129,7 @@ const blazersData: Blazer[] = [
   {
     id: '8',
     name: 'Sid Mashburn Ghost Blazer - Steel',
-    price: 2500,
+    price: 3000,
     images: [
       'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400',
       'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400',
