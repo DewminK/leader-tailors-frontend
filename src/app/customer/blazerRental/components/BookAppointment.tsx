@@ -59,7 +59,7 @@ const BookAppointment = () => {
           date: '',
           time: '',
         });
-      }, 2000);
+      }, 5000);
     }
   };
 
