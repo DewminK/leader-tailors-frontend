@@ -23,7 +23,13 @@ interface Service {
 export default function Home() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Service | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [activeTab, setActiveTab] = useState('blazers');
+
+  const handleProductClick = (service: Service, category: string) => {
+    setSelectedProduct(service);
+    setSelectedCategory(category);
+  };
 
   // --- MOCK DATA FOR EACH SECTION ---
 
@@ -119,10 +125,6 @@ export default function Home() {
     }
   ];
 
-  const handleProductClick = (product: Service) => {
-    setSelectedProduct(product);
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -157,7 +159,7 @@ export default function Home() {
             {/* --- MODIFIED: Navigation Tabs --- */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 text-center">
               <a href="#services-section" onClick={() => setActiveTab('blazers')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'blazers' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
-                Men's Blazers
+                Men&apos;s Blazers
               </a>
               <a href="#services-section" onClick={() => setActiveTab('uniforms')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'uniforms' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
                 School Uniforms
@@ -166,7 +168,7 @@ export default function Home() {
                 Customise
               </a>
               <a href="#services-section" onClick={() => setActiveTab('other')} className={`py-3 rounded-lg font-medium transition-colors text-sm ${activeTab === 'other' ? 'bg-black text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'}`}>
-                Men's Casual Outfits
+                Men&apos;s Casual Outfits
               </a>
             </div>
 
@@ -175,7 +177,7 @@ export default function Home() {
               {activeTab === 'blazers' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {blazersData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'blazers')} tailoringCategory="blazers" />
                   ))}
                 </div>
               )}
@@ -183,7 +185,7 @@ export default function Home() {
               {activeTab === 'uniforms' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {uniformsData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'uniforms')} tailoringCategory="uniforms" />
                   ))}
                 </div>
               )}
@@ -191,7 +193,7 @@ export default function Home() {
               {activeTab === 'customise' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {customData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'custom')} tailoringCategory="custom" />
                   ))}
                 </div>
               )}
@@ -199,7 +201,7 @@ export default function Home() {
               {activeTab === 'other' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {otherData.map((service, index) => (
-                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service)} />
+                    <ServiceCard key={index} {...service} onCardClick={() => handleProductClick(service, 'other')} tailoringCategory="other" />
                   ))}
                 </div>
               )}
@@ -213,7 +215,7 @@ export default function Home() {
 
       {/* Modals */}
       {isGuideOpen && <MeasurementGuide onClose={() => setIsGuideOpen(false)} />}
-      {selectedProduct && <ProductDetailCard product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
+      {selectedProduct && <ProductDetailCard product={selectedProduct} onClose={() => setSelectedProduct(null)} tailoringCategory={selectedCategory} />}
     </div>
   )
 }

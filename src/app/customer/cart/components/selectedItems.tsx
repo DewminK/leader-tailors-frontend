@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CartItem {
   id: string;
@@ -87,11 +88,15 @@ export default function SelectedItems() {
                     key={item.id}
                     className="flex flex-col md:flex-row items-center md:items-start justify-between border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-32 h-40 object-cover rounded-lg mb-4 md:mb-0"
-                    />
+                    <div className="relative w-32 h-40 mb-4 md:mb-0">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover rounded-lg"
+                        sizes="128px"
+                      />
+                    </div>
 
                     <div className="flex-1 md:ml-6 w-full">
                       <h2 className="text-xl font-semibold mb-1">

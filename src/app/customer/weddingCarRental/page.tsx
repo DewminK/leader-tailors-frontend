@@ -9,7 +9,8 @@ const cars = [
   {
     name: "Toyota Premio",
     flowers: "Fresh Flowers",
-    price: "LKR 1,500 / day",
+    price: 1500,
+    displayPrice: "LKR 1,500 / day",
     status: "Available",
     image: "/dashboard/designs/premio.jpg",
     button: "Book Now",
@@ -18,7 +19,8 @@ const cars = [
   {
     name: "Toyota Prius",
     flowers: "Artificial flowers",
-    price: "LKR 1,500 / day",
+    price: 1500,
+    displayPrice: "LKR 1,500 / day",
     status: "Available",
     image: "/dashboard/designs/prius.jpg",
     button: "Book Now",
@@ -27,7 +29,8 @@ const cars = [
   {
     name: "Mercedes Benz",
     flowers: "Fresh Flowers",
-    price: "LKR 1,500 / day",
+    price: 2500,
+    displayPrice: "LKR 2,500 / day",
     status: "Booked",
     image: "/dashboard/designs/benz.jpg",
     button: "Add to Cart",
@@ -36,17 +39,38 @@ const cars = [
 ];
 
 const decorations = [
-  { name: "Fresh Flowers", image: "/dashboard/designs/fresh.jpg" },
-  { name: "Artificial Flowers", image: "/dashboard/designs/artificial.jpg" },
-  { name: "Rosa Flowers", image: "/dashboard/designs/rosa.jpg" },
-  { name: "Custom Decoration", image: "/dashboard/designs/custom.jpg" },
+  { name: "No Decoration", image: "/dashboard/designs/premio.jpg", price: 0 },
+  { name: "Fresh Flowers", image: "/dashboard/designs/fresh.jpg", price: 500 },
+  { name: "Artificial Flowers", image: "/dashboard/designs/artificial.jpg", price: 300 },
+  { name: "Rosa Flowers", image: "/dashboard/designs/rosa.jpg", price: 700 },
+  { name: "Custom Decoration", image: "/dashboard/designs/custom.jpg", price: 1000 },
 ];
 
 
 const WeddingCarRental = () => {
   const bookingRef = useRef<HTMLDivElement>(null);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [selectedCar, setSelectedCar] = useState<string | null>(null);
+  const [selectedCar, setSelectedCar] = useState<string>("Toyota Premio");
+  const [selectedDecoration, setSelectedDecoration] = useState<string>("No Decoration");
+  const [weddingDate, setWeddingDate] = useState<string>("");
+  const [startLocation, setStartLocation] = useState<string>("");
+  const [specialRequests, setSpecialRequests] = useState<string>("");
+
+  // Calculate charges dynamically
+  const getCarPrice = () => {
+    const car = cars.find(c => c.name === selectedCar);
+    return car ? car.price : 0;
+  };
+
+  const getDecorationPrice = () => {
+    const decoration = decorations.find(d => d.name === selectedDecoration);
+    return decoration ? decoration.price : 0;
+  };
+
+  const baseRent = getCarPrice();
+  const decorationCharge = getDecorationPrice();
+  const discount = 0;
+  const totalCharge = baseRent + decorationCharge - discount;
 
   // Scroll to booking form
   const handleBookNow = (carName: string) => {
@@ -59,8 +83,42 @@ const WeddingCarRental = () => {
   // Handle booking form submit
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Create cart item
+    const cartItem = {
+      id: `wedding-car-${Date.now()}`,
+      name: `Wedding Car Rental - ${selectedCar}`,
+      size: selectedDecoration,
+      startDate: weddingDate,
+      endDate: weddingDate,
+      price: baseRent,
+      totalAmount: totalCharge,
+      image: cars.find(c => c.name === selectedCar)?.image || "",
+      type: "wedding-car",
+      details: {
+        car: selectedCar,
+        decoration: selectedDecoration,
+        location: startLocation,
+        specialRequests: specialRequests,
+      }
+    };
+
+    // Add to cart
+    const existingCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    existingCart.push(cartItem);
+    localStorage.setItem("cartItems", JSON.stringify(existingCart));
+
+    // Dispatch event to update cart count
+    window.dispatchEvent(new Event("cartUpdated"));
+
+    // Show success message
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 2000);
+    
+    // Reset form
+    setWeddingDate("");
+    setStartLocation("");
+    setSpecialRequests("");
   };
 
   return (
@@ -115,7 +173,7 @@ const WeddingCarRental = () => {
               </div>
               <div className="mt-1 text-xl font-bold font-serif text-gray-800 text-center">{car.name}</div>
               <div className="text-base text-gray-600 text-center">{car.flowers}</div>
-              <div className="text-lg font-semibold mt-1 text-gray-700 text-center">{car.price}</div>
+              <div className="text-lg font-semibold mt-1 text-gray-700 text-center">{car.displayPrice}</div>
               <div className={`text-base mt-1 ${car.status === 'Available' ? 'text-green-600' : 'text-red-500'} font-medium text-center`}>{car.status}</div>
               <button
                 className={`mt-4 px-7 py-2 rounded-lg font-bold text-lg transition-all duration-150 ${car.disabled ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800 shadow-md'}`}
@@ -136,7 +194,9 @@ const WeddingCarRental = () => {
           {decorations.map((dec, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center group bg-gradient-to-br from-white via-gray-50 to-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-200 p-2 md:p-4 border border-gray-100 hover:border-gray-300"
+              className={`flex flex-col items-center group bg-gradient-to-br from-white via-gray-50 to-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-200 p-2 md:p-4 border border-gray-100 hover:border-gray-300 ${
+                idx === decorations.length - 1 && decorations.length % 4 !== 0 ? 'md:col-start-2 md:col-span-1' : ''
+              }`}
             >
               <div className="w-full aspect-[16/10] flex items-center justify-center overflow-hidden rounded-xl relative">
                 <Image 
@@ -171,51 +231,81 @@ const WeddingCarRental = () => {
               <div className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col gap-3 shadow-sm">
                 <div className="flex justify-between text-base text-gray-700">
                   <span>Base Rent:</span>
-                  <span>1500 LKR</span>
+                  <span>{baseRent} LKR</span>
                 </div>
                 <div className="flex justify-between text-base text-gray-700">
                   <span>Decoration:</span>
-                  <span>0 LKR</span>
+                  <span>{decorationCharge} LKR</span>
                 </div>
                 <div className="flex justify-between text-base text-gray-700">
                   <span>Discount:</span>
-                  <span>0 LKR</span>
+                  <span>{discount} LKR</span>
                 </div>
                 <div className="flex justify-between font-bold border-t pt-3 mt-3 text-lg">
                   <span>Total:</span>
-                  <span>1500 LKR</span>
+                  <span>{totalCharge} LKR</span>
                 </div>
               </div>
               <div>
                 <label htmlFor="special" className="block text-base font-medium mb-2 text-gray-800">Special Requests</label>
-                <textarea id="special" rows={3} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" placeholder="Any special requests?" />
+                <textarea 
+                  id="special" 
+                  rows={3} 
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" 
+                  placeholder="Any special requests?" 
+                  value={specialRequests}
+                  onChange={(e) => setSpecialRequests(e.target.value)}
+                />
               </div>
             </div>
-            {/* Right: Booking details */}
             <div className="flex flex-col gap-6 md:col-span-1">
               <div>
                 <label htmlFor="date" className="block text-base font-medium mb-2 text-gray-800">Wedding Date</label>
-                <input id="date" type="date" className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" />
+                <input 
+                  id="date" 
+                  type="date" 
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" 
+                  value={weddingDate}
+                  onChange={(e) => setWeddingDate(e.target.value)}
+                  required
+                />
               </div>
               <div>
                 <label htmlFor="car" className="block text-base font-medium mb-2 text-gray-800">Car</label>
-                <select id="car" className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" value={selectedCar || undefined} onChange={e => setSelectedCar(e.target.value)}>
-                  <option>Toyota Premio</option>
-                  <option>Toyota Prius</option>
-                  <option>Mercedes Benz</option>
+                <select 
+                  id="car" 
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" 
+                  value={selectedCar} 
+                  onChange={e => setSelectedCar(e.target.value)}
+                >
+                  {cars.filter(c => !c.disabled).map(car => (
+                    <option key={car.name} value={car.name}>{car.name}</option>
+                  ))}
                 </select>
               </div>
               <div>
                 <label htmlFor="location" className="block text-base font-medium mb-2 text-gray-800">Start Location</label>
-                <input id="location" type="text" className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" placeholder="Enter start location" />
+                <input 
+                  id="location" 
+                  type="text" 
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all" 
+                  placeholder="Enter start location" 
+                  value={startLocation}
+                  onChange={(e) => setStartLocation(e.target.value)}
+                  required
+                />
               </div>
               <div>
                 <label htmlFor="decoration" className="block text-base font-medium mb-2 text-gray-800">Decoration Type</label>
-                <select id="decoration" className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all">
-                  <option>Fresh Flowers</option>
-                  <option>Artificial Flowers</option>
-                  <option>Rosa Flowers</option>
-                  <option>Custom Decoration</option>
+                <select 
+                  id="decoration" 
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-black/30 transition-all"
+                  value={selectedDecoration}
+                  onChange={(e) => setSelectedDecoration(e.target.value)}
+                >
+                  {decorations.map(dec => (
+                    <option key={dec.name} value={dec.name}>{dec.name} - LKR {dec.price}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -232,8 +322,8 @@ const WeddingCarRental = () => {
             <div className="bg-black/60 absolute inset-0" />
             <div className="relative bg-white rounded-2xl shadow-2xl px-10 py-8 flex flex-col items-center animate-fade-in">
               <svg className="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-              <div className="text-2xl font-bold text-green-600 mb-2">Booking Successful!</div>
-              <div className="text-gray-700 text-center">Thank you for your reservation.</div>
+              <div className="text-2xl font-bold text-green-600 mb-2">Added to Cart!</div>
+              <div className="text-gray-700 text-center">Your wedding car rental has been added to the cart.</div>
             </div>
           </div>
         )}

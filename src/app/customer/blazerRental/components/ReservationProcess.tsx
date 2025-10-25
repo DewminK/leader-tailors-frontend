@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { X, Check } from 'lucide-react';
 
 interface Blazer {
-  id?: string;
+  id: string;
   name: string;
-  fabric?: string;
   price: number;
+  images: string[];
   sizes: string[];
-  [key: string]: any;
+  fabric: string;
+  construction: string;
+  structure: string;
+  event: string[];
 }
 
 interface PaymentFormData {
@@ -52,12 +55,12 @@ const ReservationProcess = ({
     expiryDate: '',
     cvv: ''
   });
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [submitted, setSubmitted] = useState(false);
 
   const validatePersonalInfo = () => {
-    const newErrors: any = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -76,7 +79,7 @@ const ReservationProcess = ({
   };
 
   const validateRentalDetails = () => {
-    const newErrors: any = {};
+  const newErrors: { [key: string]: string } = {};
     
     if (!formData.size) newErrors.size = 'Size is required';
     if (!formData.startDate) newErrors.startDate = 'Start date is required';
@@ -101,7 +104,7 @@ const ReservationProcess = ({
   };
 
   const validatePayment = () => {
-    const newErrors: any = {};
+  const newErrors: { [key: string]: string } = {};
     
     if (!paymentData.cardNumber.trim()) {
       newErrors.cardNumber = 'Card number is required';
