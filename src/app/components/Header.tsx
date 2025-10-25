@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,7 +18,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-white shadow-sm border-b">
+    <header className="bg-white shadow-sm">
       <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -48,25 +47,33 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
-              href="/services"
-              className="text-gray-800 hover:text-gray-600 font-semibold transition-colors"
-            >
-              Our Services
-            </Link>
             <div className="relative group">
               <button className="text-gray-800 hover:text-gray-600 font-semibold transition-colors flex items-center focus:outline-none">
                 Our Services
-                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
               <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity z-20">
                 <Link href="/services" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium rounded-t-xl transition-colors">All Services</Link>
                 <Link href="/customer/weddingCarRental" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium transition-colors">Wedding Car Rental</Link>
                 <Link href="/customer/tailoring" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium transition-colors">Tailoring and sewing</Link>
                 {/* Add more service links here as needed */}
+                <Link href="/#premium-services" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium rounded-t-xl transition-colors">
+                  All Services
+                </Link>
+                <Link href="/customer/customTailoring" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium transition-colors">
+                  Custom Tailoring
+                </Link>
+                <Link href="/customer/weddingCarRental" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium transition-colors">
+                  Event Decoration
+                </Link>
+                <Link href="/customer/blazerRental" className="block px-6 py-3 text-gray-800 hover:bg-gray-100 font-medium rounded-b-xl transition-colors">
+                  Blazer Rental
+                </Link>
               </div>
             </div>
-            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors border-b-2 border-gray-800 pb-1">
+            <Link href="/customer/aboutus" className="text-gray-800 hover:text-gray-600 font-semibold transition-colors">
               About Us
             </Link>
             <Link
